@@ -1,4 +1,4 @@
-# motion-turbolinks
+# Turbolinks for RubyMotion
 
 Build hybrid mobile apps using RubyMotion and Turbolinks.
 
@@ -18,6 +18,7 @@ TODO: Write usage instructions here
 
 TODO: convert the original README into the RubyMotion equivalent.
 
+<!--
 # Turbolinks for iOS
 
 **Build high-fidelity hybrid apps with native navigation and a single shared web view.** Turbolinks for iOS provides the tooling to wrap your [Turbolinks 5](https://github.com/turbolinks/turbolinks)-enabled web app in a native iOS shell. It manages a single WKWebView instance across multiple view controllers, giving you native navigation UI with all the client-side performance benefits of Turbolinks.
@@ -330,3 +331,4 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ---
 
 © 2016 Basecamp, LLC
+-->
