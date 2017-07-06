@@ -1,69 +1,63 @@
 # Turbolinks for RubyMotion
 
-Build hybrid mobile apps using RubyMotion and Turbolinks.
+**Build high-fidelity hybrid apps with native navigation and a single shared web view.** Turbolinks for RubyMotion provides the tooling to wrap your [Turbolinks 5](https://github.com/turbolinks/turbolinks)-enabled web app in a native iOS or Android shell. It manages a single WKWebView instance across multiple view controllers, giving you native navigation UI with all the client-side performance benefits of Turbolinks.
+
+## Features
+
+### Features of Turbolinks
+
+- **Deliver fast, efficient hybrid apps.** Avoid reloading JavaScript and CSS. Save memory by sharing one WKWebView.
+- **Reuse mobile web views across platforms.** Create your views once, on the server, in HTML. Deploy them to iOS, Android, and mobile browsers simultaneously. Ship new features without waiting on App Store approval.
+- **Enhance web views with native UI.** Navigate web views using native patterns. Augment web UI with native controls.
+- **Produce large apps with small teams.** Achieve baseline HTML coverage for free. Upgrade to native views as needed.
+
+### Features of Turbolinks for RubyMotion
+
+- **Ruby syntax. Native performance.** Build native iOS and Android apps using the Ruby syntax you know and love with the same performance as Swift and Java by using [RubyMotion](http://www.rubymotion.com/).
+- **One codebase. Multiple platforms.** Use Turbolinks for RubyMotion with the [Flow framework](https://github.com/HipByte/Flow) to create a single codebase that targets both iOS and Android so that you only have one codebase to maintain.
+
+## Requirements
+
+Turbolinks for RubyMotion is compatible with all versions of RubyMotion.
+
+**Note:** We recommend that you spend some time to understand how Turbolinks works with web applications in the browser before attempting to use Turbolinks for RubyMotion. See the [Turbolinks 5 documentation](https://github.com/turbolinks/turbolinks) for details.
+
+### iOS Requirements
+
+For iOS apps, it requires iOS 8 or higher.
+
+Web views are backed by [WKWebView](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/) for full-speed JavaScript performance.
+
+### Android Requirements
+
+For Android apps, [motion-gradle](https://github.com/HipByte/motion-gradle) is required.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'motion-turbolinks'
+    gem 'motion-turbolinks', github: 'andrewhavens/motion-turbolinks'
 
 And then execute:
 
     $ bundle
 
+For Android apps, install the Gradle dependencies:
+
+    $ bundle exec rake gradle:install
+
 ## Usage
 
 TODO: Write usage instructions here
 
-TODO: convert the original README into the RubyMotion equivalent.
+# Contributing to Turbolinks for RubyMotion
+
+Turbolinks is open-source software, freely distributable under the terms of an [MIT-style license](LICENSE). Turbolinks for RubyMotion is based on [Turbolinks for iOS](https://github.com/turbolinks/turbolinks-ios).
+Development of Turbolinks for iOS/Android is sponsored by [Basecamp](https://basecamp.com/). Turbolinks for RubyMotion was created by Andrew Havens.
+
+We welcome contributions in the form of bug reports, pull requests, or thoughtful discussions in the [GitHub issue tracker](https://github.com/andrewhavens/motion-turbolinks/issues).
 
 <!--
-# Turbolinks for iOS
-
-**Build high-fidelity hybrid apps with native navigation and a single shared web view.** Turbolinks for iOS provides the tooling to wrap your [Turbolinks 5](https://github.com/turbolinks/turbolinks)-enabled web app in a native iOS shell. It manages a single WKWebView instance across multiple view controllers, giving you native navigation UI with all the client-side performance benefits of Turbolinks.
-
-## Features
-
-- **Deliver fast, efficient hybrid apps.** Avoid reloading JavaScript and CSS. Save memory by sharing one WKWebView.
-- **Reuse mobile web views across platforms.** Create your views once, on the server, in HTML. Deploy them to iOS, [Android](https://github.com/turbolinks/turbolinks-android), and mobile browsers simultaneously. Ship new features without waiting on App Store approval.
-- **Enhance web views with native UI.** Navigate web views using native patterns. Augment web UI with native controls.
-- **Produce large apps with small teams.** Achieve baseline HTML coverage for free. Upgrade to native views as needed.
-
-## Requirements
-
-Turbolinks for iOS is compatible with Xcode 8/Swift 2.3. It requires iOS 8 or higher. The Swift language requires dependencies to be compiled with the same version as the target that includes them. If you're using Swift 3.0, use the `swift-3.0` branch. Note: we're not yet using Swift 3 in production, so that branch works, but has not been thoroughly tested. Please open an issue if you find any bugs there.
-
-Web views are backed by [WKWebView](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/) for full-speed JavaScript performance.
-
-**Note:** You should understand how Turbolinks works with web applications in the browser before attempting to use Turbolinks for iOS. See the [Turbolinks 5 documentation](https://github.com/turbolinks/turbolinks) for details.
-
-## Installation
-
-Install Turbolinks manually by building `Turbolinks.framework` and linking it to your project.
-
-### Installing with Carthage
-
-Add the following to your `Cartfile`:
-
-```
-github "turbolinks/turbolinks-ios" "master"
-```
-
-The Xcode 8 command-line compiler defaults to Swift 3, so you will need to instruct Carthage to use the Swift 2.3 toolchain.
-
-Then run `TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 carthage update`.
-
-### Installing with CocoaPods
-
-Add the following to your `Podfile`:
-
-```ruby
-use_frameworks!
-pod 'Turbolinks', :git => 'https://github.com/turbolinks/turbolinks-ios.git'
-```
-
-Then run `pod install`.
 
 ## Running the Demo
 
