@@ -8,4 +8,5 @@ lib_dir_path = File.dirname(File.expand_path(__FILE__))
 Motion::Project::App.setup do |app|
   app.files.unshift(Dir.glob(File.join(lib_dir_path, "turbolinks/**/*.rb")))
   app.resources_dirs.unshift(Dir.glob(File.join(lib_dir_path, "../resources")))
+  app.frameworks += ['WebKit']
 end
