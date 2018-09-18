@@ -56,7 +56,7 @@ module Turbolinks
 
       def visitRequestDidStart(visit)
         puts "Session::VisitDelegateMethods#visitRequestDidStart"
-        delegate.sessionDidStartRequest(self) if delegate # TODO? && delegate.respond_to?(:sessionDidStartRequest)
+        delegate.sessionDidStartRequest(self) if delegate && delegate.respond_to?(:sessionDidStartRequest)
       end
 
       def visit(visit, requestDidFailWithError: error)
@@ -66,7 +66,7 @@ module Turbolinks
 
       def visitRequestDidFinish(visit)
         puts "Session::VisitDelegateMethods#visitRequestDidFinish"
-        delegate.sessionDidFinishRequest(self) if delegate # TODO? && delegate.respond_to? ...
+        delegate.sessionDidFinishRequest(self) if delegate && delegate.respond_to?(:sessionDidFinishRequest)
       end
     end
   end

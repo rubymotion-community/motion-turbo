@@ -6,7 +6,11 @@ module Turbolinks
     # attr_reader :visitableURL
 
     def initialize(options)
-      @visitableURL = options[:url]
+      url = options[:url]
+      if url.is_a? String
+        url = NSURL.alloc.initWithString(url)
+      end
+      @visitableURL = url
     end
 
     # Visitable View
