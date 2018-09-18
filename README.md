@@ -46,9 +46,11 @@ For Android apps, install the Gradle dependencies:
 
     $ bundle exec rake gradle:install
 
-## Usage
 
-TODO: Write usage instructions here
+## Getting Started
+
+When you’re ready to start your own application, see our [Quick Start Guide](QuickStartGuide.md) for step-by-step instructions to lay the foundation.
+
 
 # Contributing to Turbolinks for RubyMotion
 
@@ -63,15 +65,12 @@ We welcome contributions in the form of bug reports, pull requests, or thoughtfu
 
 This repository includes a demo application to show off features of the framework. The demo bundles a simple HTTP server that serves a Turbolinks 5 web app on localhost at port 9292.
 
-To run the demo, clone this repository to your computer and change into its directory. Then, start the demo server by running `TurbolinksDemo/demo-server` from the command line.
+To run the demo, install the gem. Then, start the demo server by running `turbolinks_demo_server` from the command line.
 
 Once you’ve started the demo server, explore the demo application in the Simulator by opening `turbolinks-ios.xcworkspace` and running the TurbolinksDemo target.
 
 ![Turbolinks for iOS demo application](https://s3.amazonaws.com/turbolinks-docs/images/ios-demo.png)
 
-## Getting Started
-
-We recommend playing with the demo app to get familiar with the framework. When you’re ready to start your own application, see our [Quick Start Guide](QuickStartGuide.md) for step-by-step instructions to lay the foundation.
 
 # Understanding Turbolinks Concepts
 

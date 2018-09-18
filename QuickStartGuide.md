@@ -1,46 +1,60 @@
-TODO: convert this guide into the RubyMotion equivalent.
-
 # Quick Start Guide
 
-This guide will walk you through creating a minimal Turbolinks for iOS application.
+This guide will walk you through creating a minimal Turbolinks for RubyMotion application.
 
 We’ll use the demo app’s bundled server in our examples, which runs at `http://localhost:9292/`, but you can adjust the URL and hostname below to point to your own application. See [Running the Demo](README.md#running-the-demo) for instructions on starting the demo server.
 
-Note that for the sake of brevity, these examples use a UINavigationController and implement everything inside the AppDelegate. In a real application, you may not want to use a navigation controller, and you should consider factoring these responsibilities out of the AppDelegate and into separate classes.
+Note that for the sake of brevity, these examples use a `UINavigationController` and implement everything inside the `AppDelegate`. In a real application, you may not want to use a navigation controller, and you should consider factoring these responsibilities out of the `AppDelegate` and into separate classes.
 
-## 1. Create a UINavigationController-based project
+In this tutorial, we will create an iOS application.
 
-Create a new Xcode project using the Single View Application template. Then, open `AppDelegate.swift` and replace it with the following to create a UINavigationController and make it the window’s root view controller:
+## 1. Create a RubyMotion iOS project
 
-```swift
-import UIKit
+Create a new iOS project using the RubyMotion generator.
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-    var navigationController = UINavigationController()
+    motion create turbolinks_demo_app
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        window?.rootViewController = navigationController
-        return true
-    }
-}
+Next, add the `motion-turbolinks` gem to your app's `Gemfile`:
+
+```ruby
+gem 'motion-turbolinks', github: 'andrewhavens/motion-turbolinks'
+```
+
+Then run `bundle install`.
+
+Next, open the app's `app/app_delegate.rb` file and replace it with the following to create a `UINavigationController` and make it the window’s root view controller:
+
+```ruby
+class AppDelegate
+  def application(application, didFinishLaunchingWithOptions: launchOptions)
+    @navigationController = UINavigationController.alloc.init
+
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.rootViewController = @navigationController
+    @window.makeKeyAndVisible
+
+    true
+  end
+end
 ```
 
 ▶️ Build and run the app in the simulator to make sure it works. It won’t do anything interesting, but it should run without error.
 
-## 2. Configure your project for Turbolinks
+    $ bundle exec rake
 
-**Add Turbolinks to your project.** Install the Turbolinks framework using Carthage, CocoaPods, or manually by building `Turbolinks.framework` and linking it to your Xcode project. See [Installation](README.md#installation) for more instructions.
+## 2. Configure your project for Turbolinks
 
 **Configure NSAppTransportSecurity for the demo server.** By default, iOS versions 9 and later restrict access to unencrypted HTTP connections. In order for your application to connect to the demo server, you must configure it to allow insecure HTTP requests to `localhost`.
 
-Run the following command with the path to your application’s `Info.plist` file:
+Open your app's `Rakefile` and change your app configuration to include an exception:
 
-```
-plutil -insert NSAppTransportSecurity -json \
-  '{"NSExceptionDomains":{"localhost":{"NSExceptionAllowsInsecureHTTPLoads":true}}}' \
-  MyApp/Info.plist
+```ruby
+Motion::Project::App.setup do |app|
+  app.name = 'turbolinks_demo_app'
+  app.info_plist['NSExceptionDomains'] = {
+    'localhost' => { 'NSExceptionAllowsInsecureHTTPLoads' => true }
+  }
+end
 ```
 
 See [Apple’s property list documentation](https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33) for more information about NSAppTransportSecurity.
@@ -49,39 +63,40 @@ See [Apple’s property list documentation](https://developer.apple.com/library/
 
 A Turbolinks Session manages a WKWebView instance and moves it between Visitable view controllers when you navigate. Your application is responsible for displaying a Visitable view controller, giving it a URL, and telling the Session to visit it. See [Understanding Turbolinks Concepts](README.md#understanding-turbolinks-concepts) for details.
 
-In your AppDelegate, create and retain a Session. Then, create a VisitableViewController with the demo server’s URL, and push it onto the navigation stack. Finally, call `session.visit()` with your view controller to perform the visit.
+In your AppDelegate, initialize a `Turbolinks::Session`. Then, create a VisitableViewController with the demo server’s URL, and push it onto the navigation stack. Finally, call `session.visit()` with your view controller to perform the visit.
 
-```swift
-import UIKit
-import Turbolinks
+```ruby
+class AppDelegate
+  def application(application, didFinishLaunchingWithOptions: launchOptions)
+    @navigationController = UINavigationController.alloc.init
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-    var navigationController = UINavigationController()
-    var session = Session()
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.rootViewController = @navigationController
+    @window.makeKeyAndVisible
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        window?.rootViewController = navigationController
-        startApplication()
-        return true
-    }
+    @session = Turbolinks::Session.new
+    visit "http://localhost:9292"
 
-    func startApplication() {
-        visit(NSURL(string: "http://localhost:9292")!)
-    }
+    true
+  end
 
-    func visit(URL: NSURL) {
-        let visitableViewController = VisitableViewController(URL: URL)
-        navigationController.pushViewController(visitableViewController, animated: true)
-        session.visit(visitableViewController)
-    }
-}
+  def visit(url)
+    view_controller = Turbolinks::VisitableViewController.new(url: url)
+    @navigationController.pushViewController(view_controller, animated: true)
+    @session.visit(view_controller)
+  end
+end
 ```
 
-▶️ Ensure the Turbolinks demo server is running and launch the application in the simulator. The demo page should load, but tapping a link will have no effect.
+▶️ Ensure the Turbolinks demo server is running:
 
-To handle link taps and initiate a Turbolinks visit, you must configure the Session’s delegate.
+    $ turbolinks_demo_server
+
+▶️ In a separate tab, build and run the application in the simulator.
+
+    $ bundle exec rake
+
+The demo page should load, but tapping a link will have no effect. To handle link taps and initiate a Turbolinks visit, you must configure the Session’s delegate.
 
 ## 4. Configure the Session’s delegate
 
@@ -89,34 +104,37 @@ The Session notifies its delegate by proposing a visit whenever you tap a link. 
 
 First, assign the Session’s `delegate` property. For demonstration purposes, we’ll make AppDelegate the Session’s delegate.
 
-```swift
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    // ...
-
-    func startApplication() {
-        session.delegate = self
-        visit(NSURL(string: "http://localhost:9292")!)
-    }
-}
+```ruby
+class AppDelegate
+  def application(application, didFinishLaunchingWithOptions: launchOptions)
+    # ...
+    @session = Turbolinks::Session.new
+    @session.delegate = self
+    visit "http://localhost:9292"
+    # ...
+  end
+  # ...
+end
 ```
 
-Next, implement the SessionDelegate protocol to handle proposed and failed visits by adding the following class extension just after the last closing brace in the file:
+Next, implement the SessionDelegate protocol by adding these methods to the AppDelegate:
 
-```swift
-extension AppDelegate: SessionDelegate {
-    func session(session: Session, didProposeVisitToURL URL: NSURL, withAction action: Action) {
-        visit(URL)
-    }
+```ruby
+class AppDelegate
+  # ...
+  def session(session, didProposeVisitToURL: url, withAction: action)
+    visit(url)
+  end
 
-    func session(session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        navigationController.presentViewController(alert, animated: true, completion: nil)
-    }
-}
+  def session(session, didFailRequestForVisitable: visitable, withError: error)
+    alert = UIAlertController.alertControllerWithTitle("Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyleAlert)
+    alert.addAction(UIAlertAction.actionWithTitle("OK", style: UIAlertActionStyleDefault, handler: nil))
+    @navigationController.presentViewController(alert, animated: true, completion: nil)
+  end
+end
 ```
 
-We handle a proposed visit in the same way as the initial visit: by creating a VisitableViewController, pushing it onto the navigation stack, and visiting it with the Session. When a visit request fails, we display an alert.
+We handle a proposed visit in the same way as the initial visit: by creating a VisitableViewController, pushing it onto the navigation stack, and visiting it with the Session. Since it works the same way, we can reuse the `visit` method that we defined earlier. When a visit request fails, we display an alert.
 
 ▶️ Build the app and run it in the simulator. Congratulations! Tapping a link should now work.
 
