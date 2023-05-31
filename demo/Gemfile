@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+gem 'rake'
+gem 'motion-turbo-ios', path: '..'
+gem 'ib', git: 'https://github.com/rubymotion-community/ib.git'
