@@ -2,13 +2,13 @@
 VERSION = "0.1"
 
 Gem::Specification.new do |spec|
-  spec.name          = "motion-turbo-ios"
+  spec.name          = "motion-turbo"
   spec.version       = VERSION
   spec.authors       = ["Andrew Havens", "Petrik de Heus"]
   spec.email         = ["email@andrewhavens.com"]
   spec.description   = %q{Turbo for RubyMotion apps}
   spec.summary       = %q{Turbo for RubyMotion apps}
-  spec.homepage      = "https://github.com/p8/motion-turbo-ios"
+  spec.homepage      = "https://github.com/rubymotion-community/motion-turbo"
   spec.license       = "MIT"
 
   files = []
