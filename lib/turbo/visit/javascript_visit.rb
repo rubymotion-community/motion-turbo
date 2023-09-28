@@ -101,7 +101,7 @@ module Turbo
     end
 
     def log(name, arguments: arguments)
-      debugLog("[JavaScriptVisit] #{name} #{location.absoluteString}", arguments: arguments)
+      Turbo.logger.debug("[JavaScriptVisit] #{name} #{location.absoluteString}", :green)
     end
   end
 end

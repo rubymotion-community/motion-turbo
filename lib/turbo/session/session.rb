@@ -178,7 +178,7 @@ module Turbo
     end
 
     def log(name, arguments)
-      debugLog("[Session] #{name}", arguments: arguments)
+      Turbo.logger.debug("[Session] #{name} #{arguments}", :magenta)
     end
   end
 end
