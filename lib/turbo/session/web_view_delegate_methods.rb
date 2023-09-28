@@ -4,7 +4,7 @@ module Turbo
       def webView(webView, didProposeVisitToLocation: location, withOptions: options)
         properties = pathConfiguration ? pathConfiguration.propertiesForURL(location) : {}
         proposal = VisitProposal.alloc.initWithURL(location, options: options, properties: properties)
-        delegate.session(self, didProposeVisitProsal: proposal) if delegate
+        delegate.session(self, didProposeVisit: proposal) if delegate
       end
 
       def webView(webView, didStartFormSubmissionToLocation: location)
