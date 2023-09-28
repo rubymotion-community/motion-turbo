@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-VERSION = "0.1"
 
 Gem::Specification.new do |spec|
   spec.name          = "motion-turbo"
-  spec.version       = VERSION
+  spec.version       = "0.1"
   spec.authors       = ["Andrew Havens", "Petrik de Heus"]
   spec.email         = ["email@andrewhavens.com"]
   spec.description   = %q{Turbo for RubyMotion apps}
