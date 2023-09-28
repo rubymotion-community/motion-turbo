@@ -24,8 +24,7 @@ module Turbo
 
     def initWithConfiguration(configuration)
       webViewConfiguration = configuration
-      #webView = WKWebView.alloc.initWithFrame(CGRectZero, configuration: webViewConfiguration)
-      webView = WKWebView.alloc.initWithFrame(CGRectMake(-50,050,450,100), configuration: webViewConfiguration)
+      webView = WKWebView.alloc.initWithFrame(CGRectZero, configuration: webViewConfiguration)
       webView.layer.borderColor = UIColor.blueColor
       webView.layer.borderWidth = 2
 
