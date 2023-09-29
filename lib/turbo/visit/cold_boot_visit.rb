@@ -44,7 +44,7 @@ module Turbo
     private
 
     def log(name)
-      debugLog("[ColdBootVisit] #{name} #{location.absoluteString}")
+      Turbo.logger.debug("[ColdBootVisit] #{name} #{location.absoluteString}", :cyan)
     end
 
     # WKNavigationDelegate methods

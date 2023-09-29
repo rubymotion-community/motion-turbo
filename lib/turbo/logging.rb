@@ -1,3 +1,9 @@
+module Turbo
+  def self.logger
+    @logger ||= Motion::Lager.new(level: "debug")
+  end
+end
+
 class TurboLog
   def self.debugLoggingEnabled
     true # TODO NSBundle.mainBundle.objectForInfoDictionaryKey('DEBUG')

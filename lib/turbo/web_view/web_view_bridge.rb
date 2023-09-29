@@ -62,10 +62,10 @@ module Turbo
         return
       end
 
-      debugLog("[Bridge] → #{functionExpression} #{arguments}")
+      Turbo.logger.debug("[Bridge] → #{functionExpression} #{arguments}", :bright_black)
 
       webView.evaluateJavaScript(script, completionHandler: -> (result, error) {
-        debugLog("[Bridge] = #{functionExpression} evaluation complete")
+        Turbo.logger.debug("[Bridge] = #{functionExpression} evaluation complete", :bright_black)
 
         if result
           if error = result["error"]
@@ -112,7 +112,7 @@ module Turbo
       return unless message
 
       if message.name.to_sym != :log
-        debugLog("[Bridge] ← #{message.name} #{message.data}")
+        Turbo.logger.debug("[Bridge] ← #{message.name} #{message.data}", :bright_black)
       end
 
       case message.name.to_sym
@@ -144,10 +144,10 @@ module Turbo
         visitDelegate.webView(self, didCompleteVisitWithIdentifier: message.identifier, restorationIdentifier: message.restorationIdentifier) if visitDelegate
       when :error_raised
         error = message.data["error"] || "<unknown error>"
-        debugLog("JavaScript error: #{error}")
+        Turbo.logger.debug("JavaScript error: #{error}", :red)
       when :log
         msg = message.data["message"]
-        debugLog("[Bridge] ← log: #{msg}") if msg.is_a?(String)
+        Turbo.logger.debug("[Bridge] ← log: #{msg}", :bright_black) if msg.is_a?(String)
       end
     end
   end

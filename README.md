@@ -1,6 +1,6 @@
-# Turbo Native iOS for RubyMotion
+# Turbo Native for RubyMotion
 
-**Build high-fidelity hybrid apps with native navigation and a single shared web view.** Turbo Native iOS for RubyMotion provides the tooling to wrap your [Turbo 7](https://github.com/hotwired/turbo)-enabled web app in a native iOS shell. It manages a single WKWebView instance across multiple view controllers, giving you native navigation UI with all the client-side performance benefits of Turbo.
+**Build high-fidelity hybrid apps with native navigation and a single shared web view.** Turbo Native for RubyMotion provides the tooling to wrap your [Turbo 7](https://github.com/hotwired/turbo)-enabled web app in a native iOS shell. It manages a single WKWebView instance across multiple view controllers, giving you native navigation UI with all the client-side performance benefits of Turbo.
 
 ## Features
 
@@ -9,13 +9,13 @@
 - **Enhance web views with native UI.** Navigate web views using native patterns. Augment web UI with native controls.
 - **Produce large apps with small teams.** Achieve baseline HTML coverage for free. Upgrade to native views as needed.
 
-### Features of Turbo Native iOS for RubyMotion
+### Features of Turbo Native for RubyMotion
 
 - **Ruby syntax. Native performance.** Build native iOS and Android apps using the Ruby syntax you know and love with the same performance as Swift and Java by using [RubyMotion](http://www.rubymotion.com/).
 
 ## Requirements
 
-Turbo Native iOS for RubyMotion is compatible with all versions of RubyMotion.
+Turbo Native for RubyMotion is compatible with all versions of RubyMotion.
 
 **Note:** You should understand how Turbo works with web applications in the browser before attempting to use Turbo iOS. See the [Turbo 7 documentation](https://github.com/hotwired/turbo) for details. Ensure that your web app sets the `window.Turbo` global variable as it's required by the native apps:
 
@@ -26,7 +26,7 @@ window.Turbo = Turbo
 
 ## Getting Started
 
-The best way to get started with Turbo iOS to try out the demo app first to get familiar with the framework. The demo app walks you through all the basic Turbo flows as well as some advanced features. To run the demo, clone this repo and open `Demo/Demo.xcworkspace` in Xcode and run the Demo target. See [Demo/README.md](Demo/README.md) for more details about the demo. When you’re ready to start your own application, read through the rest of the documentation.
+The best way to get started with Turbo Native is to try out the demo app first to get familiar with the framework. The demo app walks you through all the basic Turbo flows as well as some advanced features. To run the demo, clone this repo and open `Demo/Demo.xcworkspace` in Xcode and run the Demo target. See [Demo/README.md](Demo/README.md) for more details about the demo. When you’re ready to start your own application, read through the rest of the documentation.
 
 ## Documentation
 
