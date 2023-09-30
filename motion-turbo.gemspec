@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "motion-turbo"
-  spec.version       = "0.1"
+  spec.version       = "0.1.1"
   spec.authors       = ["Andrew Havens", "Petrik de Heus"]
   spec.email         = ["email@andrewhavens.com"]
   spec.description   = %q{Turbo for RubyMotion apps}

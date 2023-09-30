@@ -1,4 +1,5 @@
 # encoding: utf-8
+require "motion-lager"
 
 unless defined?(Motion::Project::Config)
   raise "This file must be required within a RubyMotion project Rakefile."
