@@ -94,7 +94,7 @@ class SceneController < UIResponder
 
   # SessionDelegate
 
-  def session(session, didProposeVisitProsal: proposal)
+  def session(session, didProposeVisit: proposal)
     navigationController.route(proposal.url, options: proposal.options, properties: proposal.properties)
   end
 
